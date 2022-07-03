@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,6 +23,18 @@ public class RedisOperator {
 
 	// Key（键），简单的key-value操作
 
+	/**
+	 * 分布式锁的实现
+	 * @return
+	 */
+	public Boolean setNx(String key){
+		UUID uuid = UUID.randomUUID();
+		return redisTemplate.opsForValue().setIfAbsent(key,uuid.toString());
+	}
+	public Boolean setNx(String key,long timeOutOfSeconds){
+		UUID uuid = UUID.randomUUID();
+		return redisTemplate.opsForValue().setIfAbsent(key,uuid.toString(),timeOutOfSeconds,TimeUnit.SECONDS);
+	}
 	/**
 	 * 实现命令：TTL key，以秒为单位，返回给定 key的剩余生存时间(TTL, time to live)。
 	 *
