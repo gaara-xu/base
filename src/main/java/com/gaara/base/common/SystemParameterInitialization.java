@@ -21,6 +21,8 @@ public class SystemParameterInitialization implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         redisOperator.set("someThing","");
         redisOperator.del("someThing");
+        int cpuNum = Runtime.getRuntime().availableProcessors();
+        log.info("Cup Number: {}", cpuNum);
         log.info("Os Name: {}", System.getProperty("os.name"));
         log.info("Redis Clean up !!");
     }

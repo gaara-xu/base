@@ -19,7 +19,6 @@ public class ThreadToolConfig {
     public Executor msgThreadPool() {
         //获取当前机器的核数
         int cpuNum = Runtime.getRuntime().availableProcessors();
-        System.out.println("cpu = "+cpuNum);
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //配置核心线程数cpuNum
         executor.setCorePoolSize(cpuNum);
