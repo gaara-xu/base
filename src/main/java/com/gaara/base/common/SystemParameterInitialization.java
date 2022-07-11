@@ -12,15 +12,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class RedisClean implements ApplicationRunner {
+public class SystemParameterInitialization implements ApplicationRunner {
 
     @Autowired
     private RedisOperator redisOperator;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        redisOperator.del("someThing");
         redisOperator.set("someThing","");
-        log.info("Clean up !!");
+        redisOperator.del("someThing");
+        log.info("Os Name: {}", System.getProperty("os.name"));
+        log.info("Redis Clean up !!");
     }
 }
