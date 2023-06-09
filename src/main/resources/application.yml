@@ -18,4 +18,19 @@ spring:
         max-idle: 9
         min-idle: 0
     timeout: 3000ms
+  boot:
+    admin:
+      client:
+        url: http://localhost:8123
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
 BaseHost: localhost:8443
